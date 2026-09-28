@@ -1,0 +1,781 @@
+/* ==========================================================================
+   Jal Suraksha — Government-portal style design tokens
+   ========================================================================== */
+:root {
+  --gov-blue: #4146BD;
+  --navy: #11175F;
+  --header-blue: #06477F;
+  --orange: #FF6A00;
+  --light-blue-bg: #EEF7FF;
+  --light-grey: #F4F4F2;
+  --white: #FFFFFF;
+  --border-grey: #D6D6D6;
+  --dark-text: #17324D;
+  --success-green: #238B45;
+  --warning-orange: #E88A00;
+  --danger-red: #C62828;
+
+  --font-family: Arial, "Roboto", "Segoe UI", -apple-system, sans-serif;
+  --base-font-size: 15px;
+  --radius: 2px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: var(--base-font-size);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--dark-text);
+  background: var(--light-grey);
+  line-height: 1.4;
+}
+
+a { color: var(--gov-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+table { border-collapse: collapse; width: 100%; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--white);
+  color: var(--navy);
+  padding: 8px 14px;
+  z-index: 999;
+  border: 2px solid var(--orange);
+}
+.skip-link:focus {
+  left: 8px;
+  top: 4px;
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 1px;
+}
+
+.high-contrast {
+  --light-grey: #FFFFFF;
+  --light-blue-bg: #FFFFFF;
+  --dark-text: #000000;
+  --border-grey: #000000;
+}
+.high-contrast table td,
+.high-contrast table th { border-color: #000 !important; }
+
+.site-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ==========================================================================
+   1. Top utility bar
+   ========================================================================== */
+.utility-bar {
+  background: var(--navy);
+  color: var(--white);
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 12.5px;
+}
+.utility-bar a { color: var(--white); }
+.utility-bar .utility-left { display: flex; align-items: center; gap: 6px; }
+.utility-bar .utility-right { display: flex; align-items: center; gap: 12px; }
+.font-size-controls { display: flex; gap: 4px; align-items: center; }
+.font-size-controls button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 1px 6px;
+  font-size: 12px;
+}
+.font-size-controls button:hover { background: rgba(255,255,255,0.15); }
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 12.5px;
+  padding: 0 4px;
+  opacity: 0.75;
+}
+.lang-toggle button.active { opacity: 1; text-decoration: underline; font-weight: bold; }
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 13px;
+  padding: 2px 4px;
+}
+.icon-btn:hover { text-decoration: underline; }
+.utility-search-box {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.utility-search-box input {
+  font-size: 12px;
+  padding: 2px 6px;
+  border: none;
+  border-radius: var(--radius);
+}
+
+/* ==========================================================================
+   2. Department header
+   ========================================================================== */
+.dept-header {
+  background: var(--white);
+  border-bottom: 3px solid var(--gov-blue);
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  gap: 16px;
+}
+.dept-header-left { display: flex; align-items: center; gap: 16px; }
+.dept-emblem { flex-shrink: 0; }
+.dept-titles h1 {
+  margin: 0;
+  font-size: 21px;
+  color: var(--header-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  letter-spacing: 0.3px;
+}
+.dept-titles p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--dark-text);
+  font-weight: bold;
+}
+.demo-badge {
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--light-blue-bg);
+  border: 1px solid var(--gov-blue);
+  color: var(--header-blue);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: var(--radius);
+  cursor: help;
+}
+.dept-header-right { flex-shrink: 0; }
+
+/* ==========================================================================
+   3. Main navigation
+   ========================================================================== */
+.main-nav {
+  background: var(--gov-blue);
+  border-bottom: 1px solid var(--navy);
+  overflow-x: auto;
+}
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-width: max-content;
+}
+.main-nav li { border-right: 1px solid rgba(255,255,255,0.25); }
+.main-nav li:last-child { border-right: none; }
+.main-nav button {
+  background: transparent;
+  border: none;
+  color: var(--white);
+  font-size: 13.5px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  padding: 12px 14px;
+  white-space: nowrap;
+}
+.main-nav button:hover { background: var(--navy); }
+.main-nav li.active button { background: var(--navy); border-bottom: 3px solid var(--orange); }
+
+/* ==========================================================================
+   4. News ticker
+   ========================================================================== */
+.news-ticker {
+  background: var(--light-blue-bg);
+  border-bottom: 1px solid var(--border-grey);
+  display: flex;
+  align-items: stretch;
+  height: 34px;
+}
+.ticker-orange-line { width: 4px; background: var(--orange); flex-shrink: 0; }
+.ticker-label {
+  background: var(--gov-blue);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
+}
+.ticker-track-wrap {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: ticker-scroll 26s linear infinite;
+  font-size: 13px;
+  color: var(--header-blue);
+}
+.ticker-track.paused { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.ticker-pause {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--border-grey);
+  color: var(--header-blue);
+  font-size: 12px;
+  padding: 3px 10px;
+  margin-right: 8px;
+  border-radius: var(--radius);
+}
+.ticker-pause:hover { background: var(--white); }
+
+/* ==========================================================================
+   5. Main grid
+   ========================================================================== */
+.main-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 22% 56% 22%;
+  gap: 10px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 10px auto;
+  padding: 0 10px;
+  align-items: start;
+}
+
+/* ==========================================================================
+   Shared "govbox" section styling
+   ========================================================================== */
+.govbox {
+  background: var(--white);
+  border: 1px solid var(--border-grey);
+  margin-bottom: 10px;
+}
+.govbox-header {
+  background: var(--gov-blue);
+  color: var(--white);
+  border-left: 6px solid var(--orange);
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+.govbox-body { padding: 10px 12px; }
+
+/* ==========================================================================
+   6. Left column — Important links / Quick status
+   ========================================================================== */
+.links-list { list-style: none; margin: 0; padding: 0; }
+.links-list li {
+  border-bottom: 1px solid var(--border-grey);
+}
+.links-list li:last-child { border-bottom: none; }
+.links-list button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--gov-blue);
+  font-size: 13px;
+  padding: 8px 10px;
+}
+.links-list button:hover { background: var(--light-blue-bg); text-decoration: underline; }
+
+.quick-status-list { list-style: none; margin: 0; padding: 0; }
+.quick-status-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 2px;
+  border-bottom: 1px dashed var(--border-grey);
+  font-size: 13px;
+}
+.quick-status-list li:last-child { border-bottom: none; }
+.status-dot { display: inline-flex; align-items: center; gap: 5px; font-weight: bold; }
+.status-dot::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+}
+.status-dot.good { color: var(--success-green); }
+.status-dot.good::before { animation: blink-dot 2.2s ease-in-out infinite; }
+.status-dot.warn { color: var(--warning-orange); }
+.status-dot.bad { color: var(--danger-red); }
+.status-dot.off { color: #7a7a7a; }
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* ==========================================================================
+   7. Monitoring hero (center)
+   ========================================================================== */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+  font-size: 13.5px;
+}
+.hero-grid dt { color: #566; font-weight: bold; margin: 0; }
+.hero-grid dd { margin: 0 0 8px; }
+.hero-status-line {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--border-grey);
+  padding-top: 8px;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   8. Water quality table
+   ========================================================================== */
+.gov-table th, .gov-table td {
+  border: 1px solid var(--border-grey);
+  padding: 7px 10px;
+  font-size: 13.5px;
+  text-align: left;
+}
+.gov-table th {
+  background: var(--light-blue-bg);
+  color: var(--header-blue);
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+.gov-table tr:nth-child(even) td { background: #FAFCFF; }
+.status-badge {
+  display: inline-block;
+  border-radius: var(--radius);
+  padding: 2px 8px;
+  font-size: 11.5px;
+  font-weight: bold;
+  border: 1px solid transparent;
+}
+.status-badge.normal { color: var(--success-green); background: #EAF6EE; border-color: #BFE3CB; }
+.status-badge.warning { color: var(--warning-orange); background: #FFF3E2; border-color: #F5D3A0; }
+.status-badge.danger { color: var(--danger-red); background: #FBE9E9; border-color: #EFB9B9; }
+.status-badge.resolved { color: var(--success-green); background: #EAF6EE; border-color: #BFE3CB; }
+
+/* ==========================================================================
+   9. Trend chart
+   ========================================================================== */
+.chart-tabs { display: flex; border-bottom: 1px solid var(--border-grey); }
+.chart-tabs button {
+  background: var(--light-grey);
+  border: 1px solid var(--border-grey);
+  border-bottom: none;
+  color: var(--header-blue);
+  font-size: 12.5px;
+  font-weight: bold;
+  padding: 6px 16px;
+  margin-right: 3px;
+  margin-bottom: -1px;
+}
+.chart-tabs button.active {
+  background: var(--white);
+  border-bottom: 1px solid var(--white);
+  color: var(--gov-blue);
+}
+.chart-title { font-size: 13px; font-weight: bold; color: var(--dark-text); margin: 10px 0 4px; }
+.chart-area {
+  border: 1px solid var(--border-grey);
+  background: var(--white);
+  padding: 8px 4px 2px;
+}
+.chart-svg-wrap { width: 100%; overflow-x: auto; }
+.chart-axis-label { font-size: 10.5px; fill: #566; }
+.chart-point-label { font-size: 10px; fill: #566; }
+
+/* ==========================================================================
+   10. Purification process
+   ========================================================================== */
+.process-flow {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  gap: 4px;
+  padding-bottom: 4px;
+}
+.process-stage {
+  flex: 1 0 140px;
+  border: 1px solid var(--gov-blue);
+  background: var(--light-blue-bg);
+  padding: 8px 10px;
+  min-width: 140px;
+}
+.process-stage h4 {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: var(--header-blue);
+  letter-spacing: 0.2px;
+}
+.process-stage .stage-status {
+  font-size: 11px;
+  color: var(--success-green);
+  font-weight: bold;
+}
+.process-stage .stage-metric { font-size: 11.5px; color: var(--dark-text); margin-top: 4px; }
+.process-arrow {
+  flex: 0 0 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  font-size: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.process-arrow span {
+  display: inline-block;
+  animation: flow-pulse 1.6s ease-in-out infinite;
+}
+@keyframes flow-pulse {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(3px); }
+}
+
+/* ==========================================================================
+   11 / 16. Simple metric & sensor tables
+   ========================================================================== */
+.simple-table td, .simple-table th {
+  border: 1px solid var(--border-grey);
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.simple-table th { background: var(--light-blue-bg); color: var(--header-blue); font-size: 12px; }
+.simple-table tr:nth-child(even) td { background: #FAFCFF; }
+.health-bar-wrap {
+  background: #E7E7E4;
+  border: 1px solid var(--border-grey);
+  height: 10px;
+  width: 90px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.health-bar-fill { height: 100%; background: var(--success-green); }
+
+/* ==========================================================================
+   12/13/14. Right column widgets
+   ========================================================================== */
+.whats-new-list { list-style: none; margin: 0; padding: 0; }
+.whats-new-list li {
+  font-size: 13px;
+  padding: 7px 2px;
+  border-bottom: 1px solid var(--border-grey);
+}
+.whats-new-list li:last-child { border-bottom: none; }
+.view-all-link { display: block; text-align: right; font-size: 12.5px; margin-top: 6px; font-weight: bold; }
+
+.alert-box {
+  border: 1px solid var(--border-grey);
+  border-left: 5px solid var(--warning-orange);
+  padding: 7px 9px;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+}
+.alert-box:last-child { margin-bottom: 0; }
+.alert-box.danger { border-left-color: var(--danger-red); }
+.alert-box.resolved { border-left-color: var(--success-green); }
+.alert-box .alert-title { font-weight: bold; color: var(--dark-text); display: block; margin-bottom: 2px; }
+.alert-box .alert-meta { color: #566; display: block; }
+.alert-box .alert-badge {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 10.5px;
+  font-weight: bold;
+  padding: 1px 6px;
+  border-radius: var(--radius);
+}
+.alert-box .alert-badge.warning { color: var(--warning-orange); background: #FFF3E2; }
+.alert-box .alert-badge.danger { color: var(--danger-red); background: #FBE9E9; }
+.alert-box .alert-badge.resolved { color: var(--success-green); background: #EAF6EE; }
+
+.safety-score-panel { text-align: center; padding: 4px 0 8px; }
+.safety-score-panel .score {
+  font-size: 34px;
+  font-weight: bold;
+  color: var(--success-green);
+  line-height: 1;
+}
+.safety-score-panel .score span { font-size: 16px; color: #566; }
+.safety-score-panel .headline {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--success-green);
+  margin: 4px 0 10px;
+}
+.safety-params { list-style: none; margin: 0 0 8px; padding: 0; text-align: left; }
+.safety-params li {
+  display: flex; justify-content: space-between;
+  font-size: 12.5px;
+  padding: 4px 2px;
+  border-bottom: 1px solid var(--border-grey);
+}
+.safety-note { font-size: 11px; color: #667; font-style: italic; }
+
+/* ==========================================================================
+   15. Monitoring sites map
+   ========================================================================== */
+.map-wrap { border: 1px solid var(--border-grey); background: var(--light-blue-bg); }
+.map-svg { width: 100%; height: auto; display: block; }
+.map-marker circle.pulse { animation: marker-pulse 1.8s ease-out infinite; }
+@keyframes marker-pulse {
+  0% { r: 4; opacity: 0.55; }
+  100% { r: 11; opacity: 0; }
+}
+.map-marker { cursor: pointer; }
+.map-marker text { font-size: 6.5px; fill: var(--dark-text); font-weight: bold; }
+.map-legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; margin-top: 8px; }
+.map-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.map-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.site-detail-panel {
+  border-top: 1px solid var(--border-grey);
+  margin-top: 8px;
+  padding-top: 8px;
+  font-size: 12.5px;
+}
+.site-detail-panel dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px; }
+.site-detail-panel dt { color: #566; }
+.site-detail-panel dd { margin: 0; font-weight: bold; }
+
+/* ==========================================================================
+   18. About system
+   ========================================================================== */
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+.pillar-box { border: 1px solid var(--border-grey); padding: 10px; background: var(--light-grey); }
+.pillar-box h4 { margin: 0 0 4px; font-size: 12.5px; color: var(--header-blue); }
+.pillar-box p { margin: 0; font-size: 12.5px; }
+
+/* ==========================================================================
+   19. Reports
+   ========================================================================== */
+.reports-list { list-style: none; margin: 0; padding: 0; }
+.reports-list li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--border-grey);
+  font-size: 13px;
+}
+.reports-list li:last-child { border-bottom: none; }
+.report-actions { display: flex; gap: 6px; }
+.gov-btn {
+  border: 1px solid var(--gov-blue);
+  background: var(--gov-blue);
+  color: var(--white);
+  font-size: 11.5px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+}
+.gov-btn.secondary { background: var(--white); color: var(--gov-blue); }
+.gov-btn:hover { background: var(--navy); border-color: var(--navy); }
+.gov-btn.secondary:hover { background: var(--light-blue-bg); }
+
+/* ==========================================================================
+   20. Footer
+   ========================================================================== */
+.site-footer { background: var(--navy); color: var(--white); margin-top: auto; }
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.footer-col h5 {
+  font-size: 12.5px;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 6px;
+  margin: 0 0 8px;
+}
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { font-size: 12.5px; margin-bottom: 5px; color: #D6D9F5; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.25);
+  text-align: center;
+  padding: 10px 16px 16px;
+  font-size: 11.5px;
+  color: #C9CCEE;
+}
+.footer-bottom strong { display: block; color: var(--white); margin-bottom: 4px; font-size: 12px; }
+
+/* ==========================================================================
+   Demo mode label
+   ========================================================================== */
+.demo-mode-strip {
+  background: var(--orange);
+  color: var(--white);
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: bold;
+  padding: 3px 8px;
+  letter-spacing: 0.4px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .main-grid { grid-template-columns: 26% 1fr; }
+  .main-grid > .right-col { grid-column: 1 / -1; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .main-grid > .left-col,
+  .main-grid > .right-col,
+  .main-grid > .center-col { grid-column: 1 / -1; }
+  .dept-header { flex-wrap: wrap; text-align: left; }
+  .dept-header-right { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .gov-table, .simple-table { display: block; overflow-x: auto; }
+  .process-flow { flex-wrap: nowrap; }
+}
+
+
+/* ==========================================================================
+   Adaptive-treatment additions (PPT alignment)
+   ========================================================================== */
+
+/* Site selector row inside the hero box */
+.site-select-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: var(--light-blue-bg);
+  border-bottom: 1px solid var(--border-grey);
+  font-size: 13px;
+}
+.site-select-row label { font-weight: bold; color: var(--header-blue); }
+.site-select-row select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid var(--gov-blue);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--dark-text);
+  min-width: 240px;
+}
+
+/* Extra badge / status tones */
+.status-badge.info { color: var(--gov-blue); background: #ECEDFB; border-color: #C9CCF0; }
+.status-badge.nodata { color: #5f5f5a; background: #EFEFED; border-color: var(--border-grey); }
+.status-dot.info { color: var(--gov-blue); }
+
+.value-cell { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.table-note { font-size: 11.5px; color: #4d5b66; margin: 8px 0 0; line-height: 1.45; }
+.quick-status-site { font-size: 12px; color: #4d5b66; margin: 0 0 4px; }
+
+/* Chart legend, limit labels, empty state */
+.chart-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 11.5px; margin: 2px 0 6px; }
+.chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.chart-legend i { display: inline-block; width: 20px; height: 0; border-top: 3px solid; }
+.chart-legend i.dashed { border-top: 2px dashed var(--orange); }
+.chart-limit-label { font-size: 9.5px; fill: #B34700; font-weight: bold; }
+.chart-empty { padding: 28px 12px; text-align: center; font-size: 13px; color: #4d5b66; }
+
+/* Purification: decision banner + tiered process diagram */
+.route-banner {
+  border: 1px solid var(--border-grey);
+  border-left: 6px solid var(--gov-blue);
+  background: var(--light-blue-bg);
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.route-banner.route-light { border-left-color: var(--success-green); }
+.route-banner.route-nodata { border-left-color: #8A8A85; background: var(--light-grey); }
+.route-banner strong { color: var(--header-blue); }
+.route-reasons { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; }
+.route-reasons li { margin-bottom: 2px; }
+.route-note { margin: 6px 0 0; font-size: 12.5px; }
+
+.tier { border: 1px solid var(--border-grey); background: #FCFCFB; padding: 6px 8px 8px; }
+.tier-title { margin: 0 0 6px; font-size: 11px; font-weight: bold; color: var(--header-blue); letter-spacing: 0.3px; }
+.tier-row { display: flex; align-items: stretch; gap: 4px; flex-wrap: wrap; }
+.tier-row .process-stage { flex: 1 1 120px; min-width: 120px; }
+.tier-arrow { text-align: center; color: var(--orange); font-size: 14px; line-height: 1; padding: 3px 0; }
+.tier-arrow span { display: inline-block; animation: flow-pulse-down 1.6s ease-in-out infinite; }
+@keyframes flow-pulse-down {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(3px); }
+}
+
+.process-stage.state-bypassed,
+.process-stage.state-standby,
+.process-stage.state-nodata { background: #F1F1EF; border-color: #A8A8A2; border-style: dashed; }
+.process-stage.state-notinstalled { background: var(--white); border-color: #C4C4BE; border-style: dashed; }
+.process-stage.state-bypassed h4,
+.process-stage.state-standby h4,
+.process-stage.state-notinstalled h4,
+.process-stage.state-nodata h4 { color: #6b6b66; }
+.process-stage.state-bypassed .stage-status,
+.process-stage.state-standby .stage-status,
+.process-stage.state-notinstalled .stage-status,
+.process-stage.state-nodata .stage-status { color: #5f5f5a; }
+.process-stage.state-fail { background: #FBE9E9; border-color: var(--danger-red); }
+.process-stage.state-fail .stage-status { color: var(--danger-red); }
+
+/* Alerts: info + offline tones */
+.alert-box.info { border-left-color: var(--gov-blue); }
+.alert-box.offline { border-left-color: #8A8A85; }
+.alert-box .alert-badge.info { color: var(--gov-blue); background: #ECEDFB; }
+.alert-box .alert-badge.offline { color: #5f5f5a; background: #EFEFED; }
+
+/* Safety panel tones */
+.safety-score-panel .score.bad { color: var(--danger-red); }
+.safety-score-panel .score.off { color: #7a7a7a; }
+.safety-score-panel .headline.bad { color: var(--danger-red); }
+.safety-score-panel .headline.off { color: #5f5f5a; }
+.safety-scope { margin: -6px 0 8px; font-size: 11.5px; color: #4d5b66; }
